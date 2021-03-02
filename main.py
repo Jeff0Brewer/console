@@ -12,7 +12,7 @@ def main():
 		while KEYWORD not in text_stream[0]:
 			time.sleep(.25)
 		print(text_stream[0])
-		text = text_stream[0].split(KEYWORD + ' ')[1]
+		text = text_stream[0].split(KEYWORD)[1]
 		text_stream[0] = ''
 
 		for command, callback in commands.items():

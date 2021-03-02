@@ -2,6 +2,7 @@ import webbrowser, subprocess, os, random
 from appscript import app, mactypes
 from speechrecog import stop_listen
 
+
 webbrowser.get('open -a /Applications/Google\ Chrome.app %s')
 urls = {
 	'youtube': 'https://www.youtube.com/', 
@@ -20,6 +21,8 @@ paths = {
 
 background_dir = '/Users/jeff/backgrounds/'
 black_bg = 'black.jpg'
+curr_bg = str(app('Finder').desktop_picture.get()).split('\'')
+curr_bg = curr_bg[len(curr_bg) - 2]
 backgrounds = os.listdir(background_dir)
 backgrounds.remove(black_bg)
 
@@ -50,11 +53,20 @@ def finder_music():
 def finder_documents():
 	subprocess.Popen(['open', paths['documents']])
 
+def terminal_new():
+	os.system('open -a Terminal .')
+
 def desktop_black():
 	app('Finder').desktop_picture.set(mactypes.File(background_dir + black_bg))
 
 def desktop_random():
-	app('Finder').desktop_picture.set(mactypes.File(background_dir + random.choice(backgrounds)))
+	global curr_bg
+	
+	bg = random.choice(backgrounds)
+	while bg == curr_bg:
+		bg = random.choice(backgrounds)
+	curr_bg = bg
+	app('Finder').desktop_picture.set(mactypes.File(background_dir + bg))
 
 def clear_terminal():
 	os.system('clear')

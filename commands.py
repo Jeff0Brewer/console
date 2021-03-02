@@ -10,8 +10,9 @@ commands = {
 	'school folder': finder_school,
 	'music folder': finder_music,
 	'documents folder': finder_documents,
+	'new terminal': terminal_new,
 	'black background': desktop_black,
-	'new background': desktop_random,
+	'random background': desktop_random,
 	'clear': clear_terminal,
 	'stop listening': stop_app
 }
